@@ -15,6 +15,7 @@ resource "aws_instance" "ec2" {
   subnet_id                   = data.terraform_remote_state.vpc.outputs.subnet_id
   vpc_security_group_ids      = [data.terraform_remote_state.vpc.outputs.security_group_id]
   associate_public_ip_address = true
+  user_data                   = file("./docs/init.sh")
 
   tags = {
     Name = "ec2-terraform"
